@@ -1,3 +1,6 @@
+// GET /search: This will handle movie searches. [x]
+// GET /movies/:id: This will fetch details for a specific movie. [x]
+
 import express from 'express';
 
 const router = express.Router();
