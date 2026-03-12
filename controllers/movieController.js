@@ -2,9 +2,46 @@
 // GET /api/search []
 // getMovieDetails []
 
-import express from 'express';
 import axios from 'axios';
 import "dotenv/config"
+
+const movieClient = axios.create({
+  baseURL: "http://www.omdbapi.com/"
+})
+
+
+export async function getMovies(req, res) {
+  const title=req.params.title
+  // http://www.omdbapi.com/?t=Atlantis%3A+The+Lost+Empire&y=2001
+  
+  try {
+
+    const response = await movieClient.get(`?t=Atlantis%3A+The+Lost+Empire&y=2001&apikey=${process.env.OMDB_API_KEY}`);
+    console.log(response.data);
+
+    res.json(response.data);
+  } catch (error) {
+      if (error.response) {
+        console.error("Network Error:", error.message);
+        res.status(500).json({ message: "A network error occurred." });
+      }
+  
+    
+};
+}
+
+ 
+// module.exports = movieClient;
+
+// http://www.omdbapi.com/?i=tt3896198&apikey=
+
+// https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/routes
+// https://dev.to/spyke/making-api-calls-from-nodejs-3mfk
+
+
+//              ෴⚘⎧ᴿᴵᴾ⎫⚘෴ ෴⚘⎧ᴿᴵᴾ⎫⚘෴ ෴⚘⎧ᴿᴵᴾ⎫⚘෴ ෴⚘⎧ᴿᴵᴾ⎫⚘෴ ෴⚘⎧ᴿᴵᴾ⎫⚘෴ ෴⚘⎧ᴿᴵᴾ⎫⚘෴
+
+
 // import OMDB_API_KEY from '../config.js'
 
 // const app = express(); should be handeled on Server.js
@@ -18,12 +55,7 @@ import "dotenv/config"
 //     'Authorization': 'token ' + process.env.OMDB_API_KEY
 //   }
 // });
-
-
-export async function getMovies(req, res) {
-  // try {
-    const id=req.params.id
-    res.send(id)
+// res.send(id)
     /*
     // make a request to a external api
     const response = await movieClient.get("/movies/"+id); //  const response = await axios.get("https://jsonplaceholder.typicode.com/users");
@@ -54,12 +86,3 @@ export async function getMovies(req, res) {
       res.status(500).json({ message: "A network error occurred." });
     }
   } */
-};
-
- 
-// module.exports = movieClient;
-
-// http://www.omdbapi.com/?i=tt3896198&apikey=
-
-// https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/routes
-// https://dev.to/spyke/making-api-calls-from-nodejs-3mfk

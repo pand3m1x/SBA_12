@@ -11,6 +11,6 @@ router.get('/search', (req,res) =>
 router.get('/movies/:id', (req,res) => 
   res.send("A film is - or should be - more like music than like fiction. It should be a progression of moods and feelings. — Stanley Kubrick"));
 
-router.get('/test/:id', getMovies)
+router.get('/test/:title', getMovies)
 
 export default router
