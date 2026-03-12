@@ -3,19 +3,61 @@
 // getMovieDetails []
 
 import express from 'express';
+import axios from 'axios';
+import "dotenv/config"
+// import OMDB_API_KEY from '../config.js'
 
-const axios = require('axios');
+// const app = express(); should be handeled on Server.js
+// const port = process.env.PORT || 1995; should be handeled on Server.js
  
-const movieClient = axios.create({
-  baseURL: 'http://www.omdbapi.com/',
-  headers: {
-    'Accept': 'application/vnd.github.v3+json',
-    // Note: In a real app, this token would come from an environment variable!
-    'Authorization': 'token YOUR_PERSONAL_ACCESS_TOKEN'
-  }
-});
+// const movieClient = axios.create({
+//   baseURL: 'http://www.omdbapi.com/',
+//   headers: {
+//     'Accept': 'application/vnd.github.v3+json',
+//     // Note: In a real app, this token would come from an environment variable!
+//     'Authorization': 'token ' + process.env.OMDB_API_KEY
+//   }
+// });
+
+
+export async function getMovies(req, res) {
+  // try {
+    const id=req.params.id
+    res.send(id)
+    /*
+    // make a request to a external api
+    const response = await movieClient.get("/movies/"+id); //  const response = await axios.get("https://jsonplaceholder.typicode.com/users");
+    //console.log(response.data);
+    //keep only the properties and values we need
+    // const transformedData = response.data.map((user) => ({
+    //   fact:user.text
+    // }));
+
+    const text = {
+      fact: response.data.text,
+    };
+
+    console.log(text);
+
+    res.json(text);
+  } catch (error) {
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      console.error("API Error:", error.response.status, error.response.data);
+      res
+        .status(error.response.status)
+        .json({ message: "Error fetching data from external API." });
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.error("Network Error:", error.message);
+      res.status(500).json({ message: "A network error occurred." });
+    }
+  } */
+};
+
  
-module.exports = movieClient;
+// module.exports = movieClient;
 
 // http://www.omdbapi.com/?i=tt3896198&apikey=
 
