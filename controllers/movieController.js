@@ -12,11 +12,30 @@ const movieClient = axios.create({
 
 export async function getMovies(req, res) {
   const title=req.params.title
-  // http://www.omdbapi.com/?t=Atlantis%3A+The+Lost+Empire&y=2001
+ 
   
   try {
 
     const response = await movieClient.get(`?apikey=${process.env.OMDB_API_KEY}&s=${title}`); //  const response = await axios.get("https://jsonplaceholder.typicode.com/users");
+    console.log(response.data);
+
+    res.json(response.data);
+  } catch (error) {
+      if (error.response) {
+        console.error("Network Error:", error.message);
+        res.status(500).json({ message: "A network error occurred." });
+      }
+  
+    
+};
+}
+
+export async function getMoviesById(req, res) {
+  const id = req.params.id;
+
+  try {
+
+    const response = await movieClient.get(`?apikey=${process.env.OMDB_API_KEY}&i=${id}`); //  const response = await axios.get("https://jsonplaceholder.typicode.com/users");
     console.log(response.data);
 
     res.json(response.data);
@@ -85,4 +104,9 @@ export async function getMovies(req, res) {
       console.error("Network Error:", error.message);
       res.status(500).json({ message: "A network error occurred." });
     }
-  } */
+  } 
+    
+  
+  Rid of:
+   // http://www.omdbapi.com/?t=Atlantis%3A+The+Lost+Empire&y=2001
+   // */

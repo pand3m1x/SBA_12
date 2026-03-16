@@ -3,17 +3,17 @@
 
 import express from 'express';
 import {getMovies} from '../controllers/movieController.js'
+import {getMoviesById} from '../controllers/movieController.js'
+
 const router = express.Router();
 
 router.get('/', (req,res) => 
-  res.send("Cinema is a matter of what's in the frame and what's out. — Martin Scorsese"));
+  res.send(" ˙⋆✮🎞️ You can map your life through your favorite movies, and no two people's maps will be the same. — Mary Schmich 🎞️✮⋆˙"));
 
-router.get('/search', (req,res) => 
-  res.send("The length of a film should be directly related to the endurance of the human bladder. — Alfred Hitchcock"));
+router.get('/search/:title', getMovies);
 
-router.get('/movies/:id', (req,res) => 
-  res.send("A film is - or should be - more like music than like fiction. It should be a progression of moods and feelings. — Stanley Kubrick"));
+router.get('/movies/:id', getMoviesById);
 
-router.get('/test/:title', getMovies)
+// router.get('/test/:title', getMovies)
 
 export default router
