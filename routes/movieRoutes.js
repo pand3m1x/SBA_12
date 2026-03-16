@@ -5,6 +5,9 @@ import express from 'express';
 import {getMovies} from '../controllers/movieController.js'
 const router = express.Router();
 
+router.get('/', (req,res) => 
+  res.send("Cinema is a matter of what's in the frame and what's out. — Martin Scorsese"));
+
 router.get('/search', (req,res) => 
   res.send("The length of a film should be directly related to the endurance of the human bladder. — Alfred Hitchcock"));
 
