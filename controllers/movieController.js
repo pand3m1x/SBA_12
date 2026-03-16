@@ -16,7 +16,7 @@ export async function getMovies(req, res) {
   
   try {
 
-    const response = await movieClient.get(`?t=Atlantis%3A+The+Lost+Empire&y=2001&apikey=${process.env.OMDB_API_KEY}`);
+    const response = await movieClient.get(`?apikey=${process.env.OMDB_API_KEY}&s=${title}`); //  const response = await axios.get("https://jsonplaceholder.typicode.com/users");
     console.log(response.data);
 
     res.json(response.data);
